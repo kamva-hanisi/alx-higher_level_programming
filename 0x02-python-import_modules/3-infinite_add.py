@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 if __name__ == "__main__":
 
-from indx import argv
+from sys import argv
 add = 0
-for p in argv[1:]:
-    add += int(p)
+for s in argv[1:]:
+    add += int(s)
 print("{:d}".format(add))
