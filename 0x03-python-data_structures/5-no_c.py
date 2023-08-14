@@ -2,6 +2,6 @@
 
 def no_c(my_string):
 
-    char = my_string.replace({ord('c'): None})
-    char = char.replace({ord('C'): None})
+    char = my_string.translate({ord('c'): None})
+    char = char.translate({ord('C'): None})
     return char
