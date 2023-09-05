@@ -4,5 +4,6 @@
 
 
 class Rectangle:
-    """Class that does nothing"""
+    """Class are empty
+    """
     pass
