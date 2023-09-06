@@ -1,35 +1,25 @@
 #!/usr/bin/python3
+"""
+This is the "5-test_indentation" module.
+The 5-text_indentation module supplies one function, text_indentation(text).
+"""
+
+
 def text_indentation(text):
-    """fucntions that prints a text with 2 new lines after each of 
-       these characters . ? and :
-    Arg:
-       text: The text to be passed 
-    Raise:
-      Error: if text is not string
-    Return:
-       the printed texts
-    """
-    if not isinstance(text, str):
-        raise TypeError('text must be a string')
-    else:
-        new_text = [char for char in text]
-
-        for i in range(len(new_text)):
-            if new_text[i] == '.':
-                new_text.insert(i + 1, '\n\n')
-            elif new_text[i] == '?':
-                new_text.insert(i + 1, '\n\n')
-            elif new_text[i] == ':':
-                new_text.insert(i + 1, '\n\n')
-
-        last_char = new_text[-1]
-        if last_char in ['.', '?', ':']:
-            new_text.append('\n\n')
-
-        print_text = "".join(new_text)
-
-        lines = print_text.split("\n")
-        formatted_lines = [line.strip() for line in lines]
-        formatted_text ="\n".join(formatted_lines)
-        print(formatted_text, end="")
-            
+    """splits a text into lines along "?", ":", "." followed by 2 new lines"""
+    if type(text) is not str:
+        raise TypeError("text must be a string")
+    flag = 0
+    for a in text:
+        if flag == 0:
+            if a == ' ':
+                continue
+            else:
+                flag = 1
+        if flag == 1:
+            if a == '?' or a == '.' or a == ':':
+                print(a)
+                print()
+                flag = 0
+            else:
+                print(a, end="")

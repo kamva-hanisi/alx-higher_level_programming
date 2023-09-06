@@ -1,46 +1,29 @@
 #!/usr/bin/python3
-"""
-
-This module is a function that divides a matrix with a number
-
-"""
+"""defines function to scalar divde matrix"""
 
 
 def matrix_divided(matrix, div):
-    """
-
-    Arg:
-      matrix: count the list
-      div: number to divide the elemnts of a list
-
-    Return:
-       a new list of list containing the resuslt of division
-    """
-    error = "matrix must be a matrix (list of list) of integers/floats"
-    if not isinstance(matrix, list):
-        raise TypeError(error)
-    for item in matrix:
-        if not isinstance(item, list):
-            raise TypeError(error)
-        elif len(item) != len(matrix[0]):
-            raise TypeError('Each row of the matrix must have the same size')
-        for i in item:
-            if not isinstance(i, int) and not isinstance(i, float):
-                raise TypeError(error)
-
-    if not isinstance(div, int) and not isinstance(div, float):
-        raise TypeError('div must be a number')
-    elif div == 0:
-        raise ZeroDivisionError('division by zero')
-
-    new_matrix = [[] for item in matrix]
-
-    j = 0
-
-    for item in matrix:
-        for i in item:
-            result = round((i / div), 2)
-            new_matrix[j].append(result)
-        j += 1
-
+    """divides matrix by scalar integer, rounded to two decimal places"""
+    import decimal
+    error_msg = "matrix must be a matrix (list of lists) of integers/floats"
+    if type(matrix) is not list:
+        raise TypeError(error_msg)
+    len_rows = []
+    row_count = 0
+    for row in matrix:
+        if type(row) is not list:
+            raise TypeError(error_msg)
+        len_rows.append(len(row))
+        for element in row:
+            if type(element) not in [int, float]:
+                raise TypeError(error_msg)
+        row_count += 1
+    if len(set(len_rows)) > 1:
+        raise TypeError("Each row of the matrix must have the same size")
+    if type(div) not in [int, float]:
+        raise TypeError("div must be a number")
+    if int(div) == 0:
+        raise ZeroDivisionError("division by zero")
+    new_matrix = list(map(lambda row:
+                          list(map(lambda x: round(x/div, 2), row)), matrix))
     return new_matrix
