@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """
-contains the JSON str to an function
+contains the json str to an function
 """
 
-import JSON
+import json
 
 
 def from_json_string(my_str):

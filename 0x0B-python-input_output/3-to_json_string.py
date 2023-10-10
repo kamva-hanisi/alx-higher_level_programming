@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """
-contain the JSON string
+contain the json string
 """
 
-import JSON
+import json
 
 
 def to_json_string(my_obj):

@@ -1,18 +1,15 @@
 #!/usr/bin/python3
-    """
-    shows a class Student
-    """
+"""Defines a class Student."""
 
 
 class Student:
-    """Represent a student
-    """
+    """Represent a student."""
 
     def __init__(self, first_name, last_name, age):
-        """cheking a new Student
+        """Initialize a new Student.
         Args:
-            first_name (str): The first name of the student
-            last_name (str): The last name of the student
+            first_name (str): The first name of the student.
+            last_name (str): The last name of the student.
             age (int): The age of the student.
         """
         self.first_name = first_name
