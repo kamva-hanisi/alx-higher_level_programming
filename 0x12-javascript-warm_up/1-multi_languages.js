@@ -1,5 +1,5 @@
 #!/usr/bin/node
 const first = 'C is fun';
-const sec = 'Python is cool';
+const second = 'Python is cool';
 const third = 'JavaScript is amazing';
-console.log('first\nsec\nthird');
+console.log('{first}\n{second}\n{third}');
