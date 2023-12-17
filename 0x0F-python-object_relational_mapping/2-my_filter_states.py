@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""Module that takes in an argument and displays all values
-    in the states table of hbtn_0e_0_usa
-    where name matches the argument.
+""" Display all the values in the states table where matches the argument
 """
 
 
@@ -9,36 +7,14 @@ import MySQLdb
 from sys import argv
 
 
-def format_states():
-    """Function that takes in an argument and displays
-        all values in the states table of hbtn_0e_0_usa
-        where name matches the argument.
-    """
-
-    mysql_username = argv[1]
-    mysql_password = argv[2]
-    database_name = argv[3]
-    name = argv[4]
-
-    db = MySQLdb.connect(
-            host="localhost",
-            port=3306,
-            user=mysql_username,
-            passwd=mysql_password,
-            db=database_name,
-            charset="utf8"
-            )
-
+if __name__ == '__main__':
+    db = MySQLdb.connect(host='localhost', port=3306,
+                         user=argv[1], passwd=argv[2], db=argv[3])
     cur = db.cursor()
-    querry = "SELECT * FROM states WHERE name LIKE '{}%';".format(name)
-    cur.execute(querry)
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
-
+    cur.execute("SELECT * FROM states WHERE name LIKE BINARY '%{}%' \
+                ORDER BY id".format(str(argv[4])))
+    row = cur.fetchall()
+    for state in row:
+        print(state)
     cur.close()
     db.close()
-
-
-if __name__ == '__main__':
-    format_states()
