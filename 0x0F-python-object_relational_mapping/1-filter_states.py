@@ -15,7 +15,7 @@ if __name__ == '__main__':
                          db=argv[3])
 
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM states WHERE the name is BIN 'N%'")
+    cursor.execute("SELECT * FROM states WHERE name BINARY 'N%'")
     row = cursor.fetchall()
     for state in row:
         print(state)
