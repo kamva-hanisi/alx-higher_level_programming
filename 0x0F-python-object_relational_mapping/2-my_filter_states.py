@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Module that takes in an argument and displays all values
     in the states table of hbtn_0e_0_usa
-    where name matches the argument.
 """
 
 import MySQLdb
@@ -28,7 +27,7 @@ def format_states():
                          charset="utf8")
 
         cursor = db.cursor()
-        querry = "SELECT * FROM states WHERE the is name LIKE BIN '{}%';".format(
+        querry = "SELECT * FROM states WHERE the is name LIKE '{}%';".format(
             name)
         cursor.execute(querry)
         rows = cursor.fetchall()
