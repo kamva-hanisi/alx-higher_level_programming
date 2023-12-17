@@ -11,7 +11,8 @@ from sys import argv
 
 def format_states():
     """Function that takes in an argument and displays
-        all values in the states table of hbtn_0e_0_
+        all values in the states table of hbtn_0e_0_usa
+        where name matches the argument.
     """
 
     mysql_username = argv[1]
@@ -37,6 +38,7 @@ def format_states():
 
     cur.close()
     db.close()
+
 
 if __name__ == '__main__':
     format_states()
