@@ -1,21 +1,31 @@
 #!/usr/bin/python3
-"""Prints the State object with the name passed as argument from the database.
+"""Sript that lists all State objects
+    from the database hbtn_06_usa
+    mysql username, mysql password, database name and state name to search
 """
 
-from sys import argv
-from model_state import State, Base
+
+from model_state import Base, State
+from sqlalchemy.orm import session
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
+from sys import argv
 
-if __name__ == '__main__':
+
+def list_first_state():
+    """Function to check if state exists
+    """
+
     engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
-        argv[1], argv[2], argv[3]))
+        argv[1],
+        argv[2],
+        argv[3]
+        ), pool_pre_ping=True)
 
-    Session = Session(bind=engine)
+    Session = session(bind=engine)
 
     session = Session()
 
-    state = session.query(State).filter(State.name == argv[4]).first()
+    state = session.query(State).filter(State.name.like(f'%{argv[4]}%')).all()
 
     if state:
         for st in state:
@@ -23,4 +33,7 @@ if __name__ == '__main__':
 
     else:
         print('Not found')
-    session.close()
+
+
+if __name__ == '__main__':
+    list_first_state()

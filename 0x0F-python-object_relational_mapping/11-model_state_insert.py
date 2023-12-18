@@ -1,31 +1,18 @@
 #!/usr/bin/python3
-"""Sript that lists all State objects
-    from the database hbtn_06_usa
+"""Adds the State object “Louisiana” to the database hbtn_0e_6_usa
 """
 
-
-from model_state import Base, State
-from sqlalchemy.orm import session
-from sqlalchemy import create_engine
 from sys import argv
-
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+from model_state import State, Base
 
 if __name__ == '__main__':
-
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
-        argv[1],
-        argv[2],
-        argv[3]
-        ))
-
-    Session = session(bind=engine)
-
-    session = Session()
-
-    state = State(name="Louisiana")
-
+    engine = create_engine(
+        'mysql+mysqldb://{}:{}@localhost/{}'.format(argv[1], argv[2], argv[3]))
+    session = Session(bind=engine)
+    state = State(name='Louisiana')
     session.add(state)
-
     session.commit()
-
-    print(f'{state.id}')
+    print(state.id)
+    session.close()
